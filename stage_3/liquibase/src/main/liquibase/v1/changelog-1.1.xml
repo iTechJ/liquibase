@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="changelog-1.1.1" author="anton.nekrasov@itechart-group.com">
+        <addColumn tableName="Student">
+            <column name="speciality" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+	
+	<changeSet id="changelog-1.1.2" author="anton.nekrasov@itechart-group.com">
+		<insert tableName="Student"> 
+			<column name="name" value="Anton Nekrasov"></column>
+		</insert>
+    </changeSet>
+
+</databaseChangeLog>
