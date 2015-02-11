@@ -1,8 +1,0 @@
-liquibase --url=jdbc:mysql://localhost:3306/liquibase
-		  --driver=com.mysql.jdbc.Driver 
-		  --username=root
-		  --password="1234567"
-		  --changeLogFile=E:\Work\_students\lections\liquibase\changelog-0.1.0.xml 
-		  update
-		  
-#  liquibase --url=jdbc:mysql://localhost:3306/liquibase --driver=com.mysql.jdbc.Driver --username=root --password="1234567" --changeLogFile=E:\Work\_students\lections\liquibase\changelog-0.1.0.xml update
