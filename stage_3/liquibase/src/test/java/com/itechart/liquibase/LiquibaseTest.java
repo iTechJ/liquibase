@@ -5,7 +5,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import liquibase.Contexts;
 import liquibase.Liquibase;
 import liquibase.database.Database;
@@ -13,16 +12,15 @@ import liquibase.database.DatabaseFactory;
 import liquibase.database.jvm.JdbcConnection;
 import liquibase.exception.LiquibaseException;
 import liquibase.resource.FileSystemResourceAccessor;
-
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Assert;
 import org.junit.Test;
 
 /**
- * Tests for Liquibase schema creation.
+ * In memory db tests with Liquibase.
  *
- * @author user@example.com (John Doe)
+ * @author anton.nekrasov@itechart-group.com (John Doe)
  */
 public class LiquibaseTest {
 
@@ -32,6 +30,9 @@ public class LiquibaseTest {
 
     private static Contexts ctx = new Contexts("test");
 
+    /**
+     * Prepares in memory database and populates with test data
+     */
     @BeforeClass
     public static void createTestData() throws SQLException,
             ClassNotFoundException, LiquibaseException {
@@ -49,28 +50,33 @@ public class LiquibaseTest {
 
     }
 
+    /**
+     * Closes connection & rolls all the changes back, when the test is completed
+     */
     @AfterClass
     public static void removeTestData() throws LiquibaseException, SQLException {
         liquibase.rollback(1000, ctx);
         conn.close();
     }
 
+
+    /**
+     * Checks the number of students in db.
+     * There are 3 Students added in src/main/liquibase/test/db.testdata.xml, so it is expected 3 records to be returned
+     */
     @Test
     public void testStudents() throws SQLException {
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
-        int EXPECTED_NUMBER = 3;// is the number of records added in db.testdata.xml
-        try {
 
-            stmt = conn.prepareStatement("select count(*) as ST_NUM from STUDENT");
-            rs = stmt.executeQuery();
+        final int EXPECTED_NUMBER = 3;
+        final String QUERY = "select count(*) as ST_NUM from STUDENT";
+
+        try(PreparedStatement stmt = conn.prepareStatement(QUERY);
+            ResultSet rs = stmt.executeQuery()) {
+
             rs.next();
             int numberOfUsers = rs.getInt("ST_NUM");
             Assert.assertEquals(EXPECTED_NUMBER, numberOfUsers);
 
-        } finally {
-            rs.close();
-            stmt.close();
         }
     }
 }

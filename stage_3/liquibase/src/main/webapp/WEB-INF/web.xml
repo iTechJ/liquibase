@@ -4,4 +4,13 @@
 
 <web-app>
   <display-name>Liquibase app</display-name>
+  <servlet>
+      <servlet-name>Controller</servlet-name>
+      <servlet-class>com.itechart.liquibase.Controller</servlet-class>
+      <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>Controller</servlet-name>
+      <url-pattern>/</url-pattern>
+  </servlet-mapping>
 </web-app>
