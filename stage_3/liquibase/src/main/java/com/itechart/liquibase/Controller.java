@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
@@ -31,27 +32,29 @@ public class Controller extends HttpServlet {
             throws ServletException, IOException, MissingResourceException {
 
         String dest = "main";
-        ResourceBundle rb = ResourceBundle.getBundle("mvn");
-        String user = rb.getString("db.user");
-        String password = rb.getString("db.password");
-        String  url = rb.getString("db.url");
+        try {
+            ResourceBundle rb = ResourceBundle.getBundle("mvn");
+            String user = rb.getString("db.user");
+            String password = rb.getString("db.password");
+            String  url = rb.getString("db.url");
 
-        try(
-            Connection connection = DriverManager.getConnection(url, user, password);
-            Statement statement = connection.createStatement()
-        ) {
-            String query = "show tables";
-            ResultSet rs = statement.executeQuery(query);
-            ResultSetMetaData rsmd = rs.getMetaData();
-
-            while (rs.next()) {
-                
-                System.out.println(rsmd.getColumnCount());
+            try(
+                    Connection connection = DriverManager.getConnection(url, user, password);
+                    Statement statement = connection.createStatement()
+            ) {
+                String query = "show tables";
+                ResultSet rs = statement.executeQuery(query);
+                ResultSetMetaData md = rs.getMetaData();
+                ArrayList<String> tables = new ArrayList<>();
+                while (rs.next()) {
+                    for(int i = 1; i <= md.getColumnCount(); i++) {
+                        tables.add(rs.getString(i));
+                    }
+                }
+                //TODO: implement jstl;
+                request.setAttribute("data", tables);
+                rs.close();
             }
-
-            rs.close();
-
-
         } catch (Exception e) {
             request.setAttribute("error", e.getLocalizedMessage());
             dest = "error";
