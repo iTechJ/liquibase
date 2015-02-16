@@ -1,31 +1,17 @@
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="java.util.List" %>
-<%@ taglib prefix="c"
-           uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
-  User: Anton.Nekrasov
-  Date: 2/13/2015
-  Time: 10:23
---%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<% List<String> data = (ArrayList<String>)request.getAttribute("data"); %>
+
 <html>
-<head>
-    <title>Liquibase</title>
-</head>
-<body>
-<h1>Listed tables</h1>
-<ul>
-    <%
-        for (String table : data) {
-    %>
+    <head>
+        <title>Liquibase</title>
+    </head>
+    <body>
+        <h1>Listed tables</h1>
 
-        <li><%=table%></li>
-
-    <%
-        }
-    %>
-</ul>
-
-</body>
+        <ul>
+            <c:forEach items="${requestScope.dataz}" var="item">
+                <li><c:out value="${item}"/></li>
+            </c:forEach>
+        </ul>
+    </body>
 </html>

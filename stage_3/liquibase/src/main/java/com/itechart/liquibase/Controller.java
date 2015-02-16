@@ -13,14 +13,14 @@ import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
 /**
- * Simplest controller for showing the schema structure
- * Created by Anton.Nekrasov on 2/13/2015.
+ * Simplest controller, showing the schema structure
  */
 @WebServlet(name = "Controller")
 public class Controller extends HttpServlet {
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        process(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -28,6 +28,12 @@ public class Controller extends HttpServlet {
         process(request, response);
     }
 
+    /**
+     * Simplest controller, showing the schema structure
+     *
+     * @param request http request
+     * @param response http response
+     */
     private void process(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, MissingResourceException {
 
@@ -51,8 +57,7 @@ public class Controller extends HttpServlet {
                         tables.add(rs.getString(i));
                     }
                 }
-                //TODO: implement jstl;
-                request.setAttribute("data", tables);
+                request.setAttribute("dataz", tables);
                 rs.close();
             }
         } catch (Exception e) {
@@ -63,6 +68,5 @@ public class Controller extends HttpServlet {
         response.setContentType("text/html");
         RequestDispatcher rd = request.getRequestDispatcher(dest + ".jsp");
         rd.forward(request, response);
-
     }
 }
