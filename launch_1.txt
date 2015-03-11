@@ -1,8 +1,11 @@
-liquibase --url=jdbc:mysql://localhost:3306/liquibase
-		  --driver=com.mysql.jdbc.Driver 
-		  --username=root
-		  --password="1234567"
-		  --changeLogFile=E:\Work\_students\lections\liquibase\changelog-0.1.0.xml 
-		  update
+java -jar liquibase.jar 
+	--classpath=C:\mysql-connector-java-5.1.34-bin.jar 
+	--url=jdbc:mysql://localhost:3306/liquibase 
+	--driver=com.mysql.jdbc.Driver 
+	--username=root 
+	--password="" 
+	--changeLogFile="D:\JavaLab\Class 9 - Liquibase\liquibase\stage_1\changelog-0.1.0.xml" 
+	update
 		  
-#  liquibase --url=jdbc:mysql://localhost:3306/liquibase --driver=com.mysql.jdbc.Driver --username=root --password="1234567" --changeLogFile=E:\Work\_students\lections\liquibase\changelog-0.1.0.xml update
+#java -jar liquibase.jar --classpath=C:\mysql-connector-java-5.1.34-bin.jar --url=jdbc:mysql://localhost:3306/liquibase --driver=com.mysql.jdbc.Driver --username=root --password="" --changeLogFile="D:\JavaLab\Class 9 - Liquibase\liquibase\stage_1\changelog-0.1.0.xml" update
+

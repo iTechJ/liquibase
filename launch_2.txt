@@ -1,10 +1,12 @@
-liquibase --url=jdbc:mysql://localhost:3306/liquibase
-		  --driver=com.mysql.jdbc.Driver 
-		  --username=root
-		  --password="1234567"
-		  --changeLogFile=E:\Work\_students\lections\liquibase\stage_2\master.changelog.xml 
+java -jar liquibase.jar 
+	--classpath=C:\mysql-connector-java-5.1.34-bin.jar 
+	--url=jdbc:mysql://localhost:3306/liquibase 
+	--driver=com.mysql.jdbc.Driver 
+	--username=root 
+	--password="" 
+	--changeLogFile="D:\JavaLab\Class 9 - Liquibase\liquibase\stage_2\master.changelog.xml" 
+	update
 		  
-		  update
-		  rollbackCount -1  OK // -3 - Error
+#java -jar liquibase.jar --classpath=C:\mysql-connector-java-5.1.34-bin.jar --url=jdbc:mysql://localhost:3306/liquibase --driver=com.mysql.jdbc.Driver --username=root --password="" --changeLogFile="D:\JavaLab\Class 9 - Liquibase\liquibase\stage_2\master.changelog.xml" update
+#java -jar liquibase.jar --classpath=C:\mysql-connector-java-5.1.34-bin.jar --url=jdbc:mysql://localhost:3306/liquibase --driver=com.mysql.jdbc.Driver --username=root --password="" --changeLogFile="D:\JavaLab\Class 9 - Liquibase\liquibase\stage_2\master.changelog.xml" rollbackCount 1
 
-liquibase --url=jdbc:mysql://localhost:3306/liquibase --driver=com.mysql.jdbc.Driver --username=root --password="1234567" --changeLogFile=E:\Work\_students\lections\liquibase\stage_2\master.changelog.xml update
