@@ -1,10 +1,5 @@
 package com.itechart.liquibase;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import liquibase.Contexts;
 import liquibase.Liquibase;
 import liquibase.database.Database;
@@ -13,14 +8,16 @@ import liquibase.database.jvm.JdbcConnection;
 import liquibase.exception.LiquibaseException;
 import liquibase.resource.FileSystemResourceAccessor;
 import org.junit.AfterClass;
-import org.junit.BeforeClass;
 import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.junit.Test;
+
+import java.sql.*;
 
 /**
  * In memory db tests with Liquibase.
  *
- * @author anton.nekrasov@itechart-group.com (John Doe)
+ * @author anton.nekrasov@itechart-group.com (Anton Nekrasov)
  */
 public class LiquibaseTest {
 
@@ -58,7 +55,6 @@ public class LiquibaseTest {
         liquibase.rollback(1000, ctx);
         conn.close();
     }
-
 
     /**
      * Checks the number of students in db.

@@ -3,22 +3,21 @@
 <databaseChangeLog
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
-        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
-        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
-	<changeSet id="changelog-2.0.1" author="anton.nekrasov@itechart-group.com">
-		<createTable tableName="Group">
-			<column name="id" type="bigint">
+    <changeSet id="changelog-2.0.1" author="anton.nekrasov@itechart-group.com">
+        <createTable tableName="Group">
+            <column name="id" type="bigint">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-			<column name="group_name" type="varchar(50)">
+            <column name="group_name" type="varchar(50)">
                 <constraints nullable="false"/>
             </column>
-		</createTable>
-		<rollback>
-			<dropTable tableName="Group"/>
-		</rollback>
-	</changeSet>
+        </createTable>
+        <rollback>
+            <dropTable tableName="Group"/>
+        </rollback>
+    </changeSet>
 
 </databaseChangeLog>

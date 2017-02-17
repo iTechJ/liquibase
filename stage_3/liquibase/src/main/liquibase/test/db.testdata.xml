@@ -3,15 +3,14 @@
 <databaseChangeLog
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
-        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
-        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
     <property name="group.id" value="1"/>
 
     <changeSet id="test.changelog-2.0.1" author="anton.nekrasov@itechart-group.com" context="test">
         <insert tableName="GROUP">
-            <column name="id" value="${group.id}"></column>
+            <column name="id" value="${group.id}"/>
             <column name="group_name" value="107413"/>
         </insert>
         <rollback/>
@@ -19,16 +18,16 @@
 
     <changeSet id="test.changelog-2.0.2" author="anton.nekrasov@itechart-group.com" context="test">
         <insert tableName="STUDENT">
-            <column name="name" value="Ivan Ivanov"></column>
-            <column name="group_id" value="${group.id}"></column>
+            <column name="name" value="Ivan Ivanov"/>
+            <column name="group_id" value="${group.id}"/>
         </insert>
         <insert tableName="STUDENT">
-            <column name="name" value="Pyotr Petrov"></column>
-            <column name="group_id" value="${group.id}"></column>
+            <column name="name" value="Pyotr Petrov"/>
+            <column name="group_id" value="${group.id}"/>
         </insert>
         <insert tableName="STUDENT">
-            <column name="name" value="Sidor Sidorov"></column>
-            <column name="group_id" value="${group.id}"></column>
+            <column name="name" value="Sidor Sidorov"/>
+            <column name="group_id" value="${group.id}"/>
         </insert>
         <rollback/>
     </changeSet>

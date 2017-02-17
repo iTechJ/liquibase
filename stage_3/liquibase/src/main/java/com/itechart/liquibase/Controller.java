@@ -31,7 +31,7 @@ public class Controller extends HttpServlet {
     /**
      * Simplest controller, showing the schema structure
      *
-     * @param request http request
+     * @param request  http request
      * @param response http response
      */
     private void process(HttpServletRequest request, HttpServletResponse response)
@@ -42,9 +42,9 @@ public class Controller extends HttpServlet {
             ResourceBundle rb = ResourceBundle.getBundle("mvn");
             String user = rb.getString("db.user");
             String password = rb.getString("db.password");
-            String  url = rb.getString("db.url");
+            String url = rb.getString("db.url");
 
-            try(
+            try (
                     Connection connection = DriverManager.getConnection(url, user, password);
                     Statement statement = connection.createStatement()
             ) {
@@ -53,7 +53,7 @@ public class Controller extends HttpServlet {
                 ResultSetMetaData md = rs.getMetaData();
                 ArrayList<String> tables = new ArrayList<>();
                 while (rs.next()) {
-                    for(int i = 1; i <= md.getColumnCount(); i++) {
+                    for (int i = 1; i <= md.getColumnCount(); i++) {
                         tables.add(rs.getString(i));
                     }
                 }
